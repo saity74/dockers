@@ -1,7 +1,7 @@
 FROM php:5.6-fpm
 
 # install the PHP extensions we need
-RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev && rm -rf /var/lib/apt/lists/* \
+RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev git && rm -rf /var/lib/apt/lists/* \
         && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
         && docker-php-ext-install gd
 RUN docker-php-ext-install mysqli
@@ -17,5 +17,7 @@ RUN curl -o joomla.tar.gz -SL ${JOOMLA_URL} \
 	&& tar -xzf joomla.tar.gz -C /var/www/html/ \
 	&& rm joomla.tar.gz \
 	&& chown -R www-data:www-data /var/www/html
+
+RUN mkdir /var/www/html/pimp && git clone https://github.com/potsky/PimpMyLog.git /var/www/html/pimp
 
 CMD ["php-fpm"]
