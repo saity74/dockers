@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev git && rm -rf 
         && docker-php-ext-install gd
 RUN docker-php-ext-install mysqli
 
-VOLUME /var/www/html
+WORKDIR /var/www/html
 
 ENV JOOMLA_VERSION 3.4.3
 ENV JOOMLA_SHA1 9f4e983c6a11ba137bfd5c4355764a754d7e9497
@@ -18,6 +18,8 @@ RUN curl -o joomla.tar.gz -SL ${JOOMLA_URL} \
 	&& rm joomla.tar.gz \
 	&& chown -R www-data:www-data /var/www/html
 
-RUN mkdir /var/www/html/pimp && git clone https://github.com/potsky/PimpMyLog.git /var/www/html/pimp
+RUN mkdir /var/www/pimp \
+  && git clone https://github.com/potsky/PimpMyLog.git /var/www/pimp \
+  && chown -R www-data:www-data /var/www/pimp
 
 CMD ["php-fpm"]
