@@ -18,10 +18,13 @@ RUN curl -o joomla.tar.gz -SL ${JOOMLA_URL} \
 	&& rm joomla.tar.gz \
 	&& chown -R www-data:www-data /var/www/html
 
+VOLUME /var/www/html
+
 RUN mkdir /var/www/pimp \
   && git clone https://github.com/potsky/PimpMyLog.git /var/www/pimp \
   && chown -R www-data:www-data /var/www/pimp
+  && cp /var/www/pimp/cfg/config.example.php /var/www/pimp/config.user.php
 
-VOLUME /var/www/html
+VOLUME /var/www/pimp
 
 CMD ["php-fpm"]
