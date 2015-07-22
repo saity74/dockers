@@ -18,13 +18,9 @@ RUN curl -o joomla.tar.gz -SL ${JOOMLA_URL} \
 	&& rm joomla.tar.gz \
 	&& chown -R www-data:www-data /var/www/html
 
+# forward request and error logs to docker log collector
+RUN ln -sf /dev/stderr /var/log/php5-fpm.log
+
 VOLUME /var/www/html
-
-RUN mkdir /var/www/pimp \
-  && git clone https://github.com/potsky/PimpMyLog.git /var/www/pimp \
-  && chown -R www-data:www-data /var/www/pimp \
-  && cp /var/www/pimp/cfg/nginx.config.php /var/www/pimp/config.user.php
-
-VOLUME /var/www/pimp
 
 CMD ["php-fpm"]
