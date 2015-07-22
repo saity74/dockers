@@ -22,4 +22,6 @@ RUN mkdir /var/www/pimp \
   && git clone https://github.com/potsky/PimpMyLog.git /var/www/pimp \
   && chown -R www-data:www-data /var/www/pimp
 
+VOLUME /var/www/html
+
 CMD ["php-fpm"]
