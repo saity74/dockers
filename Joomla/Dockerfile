@@ -22,7 +22,7 @@ VOLUME /var/www/html
 
 RUN mkdir /var/www/pimp \
   && git clone https://github.com/potsky/PimpMyLog.git /var/www/pimp \
-  && chown -R www-data:www-data /var/www/pimp
+  && chown -R www-data:www-data /var/www/pimp \
   && cp /var/www/pimp/cfg/config.example.php /var/www/pimp/config.user.php
 
 VOLUME /var/www/pimp
