@@ -6,9 +6,7 @@ RUN echo "deb http://repo.ajenti.org/debian main main debian" >> /etc/apt/source
 
 RUN rm /etc/apt/apt.conf.d/docker-gzip-indexes
 
-RUN apt-get update
-
-RUN apt-get install -y ajenti
+RUN apt-get update && apt-get install -y ajenti
 
 RUN service ajenti start
 
