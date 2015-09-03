@@ -8,7 +8,5 @@ RUN rm /etc/apt/apt.conf.d/docker-gzip-indexes
 
 RUN apt-get update && apt-get install -y ajenti
 
-RUN service ajenti start
-
 EXPOSE 8000
 ENTRYPOINT ["ajenti-panel"]
