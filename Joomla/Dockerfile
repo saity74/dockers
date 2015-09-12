@@ -8,8 +8,8 @@ RUN docker-php-ext-install mysqli
 
 WORKDIR /var/www/html
 
-ENV JOOMLA_VERSION 3.4.3
-ENV JOOMLA_SHA1 9f4e983c6a11ba137bfd5c4355764a754d7e9497
+ENV JOOMLA_VERSION 3.4.4
+ENV JOOMLA_SHA1 371ed0a987a4c66b4f711b8e27a785f84050de90
 ENV JOOMLA_URL https://github.com/joomla/joomla-cms/releases/download/${JOOMLA_VERSION}/Joomla_${JOOMLA_VERSION}-Stable-Full_Package.tar.gz
 
 RUN curl -o joomla.tar.gz -SL ${JOOMLA_URL} \
